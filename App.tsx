@@ -7,6 +7,7 @@ import BouncyCheckBox from "react-native-bouncy-checkbox";
 function App(){
   const passwordSchema = Yup.object().shape({
     passwordLength:Yup.number()
+    .typeError("Only numeric values is Required")
     .min(4,"Min length of 4 is required")
     .max(100,'Max length of 100 characters is required')
     .required("Length is required")
@@ -74,6 +75,8 @@ setIsPasswordGenerated(true);
         <Formik
        initialValues={{ passwordLength:''  }}
        validationSchema={passwordSchema}
+       validateOnChange={true} 
+       validateOnBlur={true} 
        onSubmit={values=>{
         passwordGenerator(+values.passwordLength)
        }}
@@ -105,7 +108,7 @@ setIsPasswordGenerated(true);
           style={styles.inputStyle}
           value={values.passwordLength}
           onChangeText={handleChange('passwordLength')}
-          placeholder="Ex 8"
+          placeholder="Ex 4-100"
           keyboardType="numeric"
           >    
           </TextInput>
@@ -152,6 +155,7 @@ setIsPasswordGenerated(true);
          </View>
         <View style={styles.formActions}>
         <TouchableOpacity
+
         disabled={!isValid}
         style={styles.primaryBtn}
         onPress={()=>{
@@ -217,7 +221,6 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     marginBottom: 15,
-    alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
