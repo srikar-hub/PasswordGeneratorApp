@@ -17,7 +17,9 @@
     "react-native": "0.76.7",
     "react-native-bouncy-checkbox": "^4.1.2",
     "react-native-safe-area-context": "^5.2.0",
-    "yup": "^1.6.1"
+    "react-native-web": "^0.19.13",
+    "yup": "^1.6.1",
+    "@expo/metro-runtime": "~4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -1,5 +1,6 @@
 import { ScrollView,View,TextInput, Text,StyleSheet,TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useState } from "react";
 import * as Yup from 'yup';
 import { Formik } from "formik";
@@ -68,7 +69,8 @@ setIsPasswordGenerated(true);
 
   return(
     
-     <ScrollView keyboardShouldPersistTaps="handled">
+    <SafeAreaProvider>
+       <ScrollView keyboardShouldPersistTaps="handled">
       <SafeAreaView style={styles.appContainer}>
         <View style={styles.formContainer}>
           <Text style={styles.title}>Password Generator</Text>
@@ -188,6 +190,7 @@ setIsPasswordGenerated(true);
      ):null}
       </SafeAreaView>
      </ScrollView>
+    </SafeAreaProvider>
    
   )
 }
@@ -271,14 +274,8 @@ const styles = StyleSheet.create({
   },
   cardElevated: {
     backgroundColor: '#ffffff',
-    elevation: 1,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowColor: '#333',
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    elevation: 1,  // Still valid for Android
+    boxShadow: '1px 1px 2px rgba(51, 51, 51, 0.2)',  // For Web
   },
   generatedPassword: {
     fontSize: 22,
